@@ -8,6 +8,8 @@
 // https://stackoverflow.com/questions/45553341/should-i-use-both-import-rxjs-rx-and-import-observable-from-rxjs-obse
 
 // import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
+
+// the article this code is based:  https://blog.angular-university.io/angular-http/
 import { Component, OnInit } from '@angular/core';
 
 
