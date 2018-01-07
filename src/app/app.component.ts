@@ -26,17 +26,26 @@ import { HttpParams } from '@angular/common/http';
 
 
 
-
-
-interface Course 
+/* interface RequestHeadersResult
 {
-  description: string;
-  courseListIcon: string;
-  iconUrl: string;
-  longDescription: string;
-  url: string;
-}
+  'Accept': string;
+  'Accept-Encoding': string;
+  'Accept-Language': string;
+  'Connection': string;
+  'Host': string;
+  'Origin': string;
+  'Referer': string;
+  'User-Agent': string;
+} */
 
+interface MockServerData
+{
+  status1: string;
+	status2: string;
+	status3: string;
+	status4: string;
+	status5: string;
+}
 
 
 
@@ -47,7 +56,7 @@ interface Course
 })
 export class AppComponent
 {
-  courses$: Observable<Course[]>;
+  courses$: Observable<MockServerData[]>;
   requestURL = 'http://mockserver.local/mockserver.php';
 
   constructor(private http:HttpClient)
@@ -62,7 +71,7 @@ export class AppComponent
                                    .set('limitToFirst', "11111111111");
 
     this.courses$ = this.http
-                        .get<Course[]>(this.requestURL, {params})
+                        .get<MockServerData>(this.requestURL, {params})
                         .map(data => { const debugAnchor = '';
                                        return _.values(data);
                                      }
