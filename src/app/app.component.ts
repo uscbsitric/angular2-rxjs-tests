@@ -22,6 +22,7 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import * as _ from 'lodash';
+import { HttpParams } from '@angular/common/http';
 
 
 
@@ -35,8 +36,6 @@ interface Course
   longDescription: string;
   url: string;
 }
-
-
 
 
 
@@ -58,10 +57,14 @@ export class AppComponent
 
   ngOnInit()
   {
+    const key = 'someKey';
+    const params = new HttpParams().set('orderBy', key)
+                                   .set('limitToFirst', "11111111111");
+
     this.courses$ = this.http
-                        .get<Course[]>(this.requestURL)
-                        .map(data => { _.values(data);
-                                       const debugAnchor = '';
+                        .get<Course[]>(this.requestURL, {params})
+                        .map(data => { const debugAnchor = '';
+                                       return _.values(data);
                                      }
                             )
                         .do(console.log);
