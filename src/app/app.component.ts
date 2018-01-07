@@ -18,25 +18,12 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import * as _ from 'lodash';
 import { HttpParams } from '@angular/common/http';
 
-
-
-/* interface RequestHeadersResult
-{
-  'Accept': string;
-  'Accept-Encoding': string;
-  'Accept-Language': string;
-  'Connection': string;
-  'Host': string;
-  'Origin': string;
-  'Referer': string;
-  'User-Agent': string;
-} */
 
 interface MockServerData
 {
@@ -69,6 +56,7 @@ export class AppComponent
     const key = 'someKey';
     const params = new HttpParams().set('orderBy', key)
                                    .set('limitToFirst', "11111111111");
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.courses$ = this.http
                         .get<MockServerData>(this.requestURL, {params})
