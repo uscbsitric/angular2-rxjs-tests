@@ -10,6 +10,7 @@
 // import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
 
 // the article this code is based:  https://blog.angular-university.io/angular-http/
+// error handling article: https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/error_handling.html
 import { Component, OnInit } from '@angular/core';
 
 
@@ -58,6 +59,7 @@ export class AppComponent
                                    .set('limitToFirst', "11111111111");
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
+    /* WORKING HTTP GET Code
     this.courses$ = this.http
                         .get<MockServerData>(this.requestURL, {params})
                         .map(data => { const debugAnchor = '';
@@ -65,5 +67,9 @@ export class AppComponent
                                      }
                             )
                         .do(console.log);
+    */
+
+    const putUrl = '';
+    this.courses$ = this.http.put();
   }
 }
