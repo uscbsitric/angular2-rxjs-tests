@@ -10,7 +10,7 @@
 // import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
 
 // the article this code is based:  https://blog.angular-university.io/angular-http/
-// error handling article: https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/error_handling.html
+// ERROR handling article: https://xgrommx.github.io/rx-book/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/error_handling.html
 import { Component, OnInit } from '@angular/core';
 
 
