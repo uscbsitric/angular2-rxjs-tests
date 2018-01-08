@@ -35,6 +35,15 @@ interface MockServerData
 	status5: string;
 }
 
+interface PutRequestPayload
+{
+  courseListIcon: string;
+  description: string;
+  iconUrl: string;
+  longDescription: string;
+  url: string;
+}
+
 
 
 @Component({
@@ -47,6 +56,8 @@ export class AppComponent
   courses$: Observable<MockServerData[]>;
   requestURL = 'http://mockserver.local/mockserver.php';
 
+  putRequestPayload: PutRequestPayload;
+
   constructor(private http:HttpClient)
   {
     
@@ -56,20 +67,27 @@ export class AppComponent
   {
     const key = 'someKey';
     const params = new HttpParams().set('orderBy', key)
-                                   .set('limitToFirst', "11111111111");
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+                                       .set('limitToFirst', '11111111111');
+    const headers = new HttpHeaders().set('Content-Type', 'application/jsonDDDDD');
 
-    /* WORKING HTTP GET Code
+    this.putRequestPayload = {'courseListIcon': '.../main-page-logo-small-hat.png',
+                              'description': 'Angular Tutorial For Beginners TEST',
+                              'iconUrl': '.../angular2-for-beginners.jpg',
+                              'longDescription': '...A very Long Description Here...',
+                              'url': 'new-value-for-url'
+                             };
+
+    // WORKING HTTP GET Code
     this.courses$ = this.http
-                        .get<MockServerData>(this.requestURL, {params})
+                        .get<MockServerData>(this.requestURL, {'headers': headers, 'params': params})
                         .map(data => { const debugAnchor = '';
                                        return _.values(data);
                                      }
                             )
                         .do(console.log);
-    */
+    
 
-    const putUrl = '';
-    this.courses$ = this.http.put();
+
+    /////this.courses$ = this.http.put<MockServerData>(this.requestURL, this.putRequestPayload, {headers});
   }
 }

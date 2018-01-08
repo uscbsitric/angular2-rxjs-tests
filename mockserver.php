@@ -1,5 +1,7 @@
 <?php
-  header('Access-Control-Allow-Origin: *');
+  header("Access-Control-Allow-Origin: *");
+  header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+  header('Access-Control-Allow-Methods: GET,PUT,POST,DELETE,OPTIONS');
 
   $data = ["status1" => "200 - success",
 		   "status2" => "400 - forbidden",
@@ -50,6 +52,6 @@
   }
 
 
-  header('Content-Type: application/json');
+  
   echo json_encode($data);
 ?>
