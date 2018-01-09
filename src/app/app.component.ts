@@ -46,9 +46,16 @@ interface PutRequestPayload
 
 interface PatchRequestPayload
 {
-  iconUrl: string;
-  longDescription: string;
-  url: string;
+  dataFromAngularIconUrl: string;
+  dataFromAngularLongDescription: string;
+  dataFromAngularUrl: string;
+}
+
+interface PostRequestPayload
+{
+  dataFromAngularIconUrl: string;
+  dataFromAngularLongDescription: string;
+  dataFromAngularUrl: string;
 }
 
 
@@ -66,6 +73,7 @@ export class AppComponent
 
   putRequestPayload: PutRequestPayload;
   patchRequestPayload: PatchRequestPayload;
+  postRequestPayload: PostRequestPayload;
   
 
   constructor(private http:HttpClient)
@@ -87,10 +95,15 @@ export class AppComponent
                               'dataFromAngularUrl': 'new-value-for-url'
                              };
 
-    this.patchRequestPayload = {'iconUrl': 'value1',
-                                'longDescription': 'value2',
-                                'url': 'value3',
+    this.patchRequestPayload = {'dataFromAngularIconUrl': 'value1',
+                                'dataFromAngularLongDescription': 'value2',
+                                'dataFromAngularUrl': 'value3',
                                };
+
+    this.postRequestPayload = {'dataFromAngularIconUrl': 'test data 1';
+                               'dataFromAngularLongDescription': 'test data 2';
+                               'dataFromAngularUrl': 'test data 3';
+                              };
 
 
 
@@ -132,7 +145,7 @@ export class AppComponent
 
 
 
-    // THIS IS A WORKING PUT REQUEST WITH ERROR CATCHER
+    /* THIS IS A WORKING PUT REQUEST WITH ERROR CATCHER
     this.http.put(this.requestURL,
                   this.putRequestPayload,
                   {'headers': headers
@@ -148,10 +161,11 @@ export class AppComponent
                                  debugVar3 = '333';
                                }
                        );
+    */
 
 
-
-/*     this.http.put(this.requestURL,
+    /*
+    this.http.put(this.requestURL,
                   this.patchRequestPayload,
                   {'headers': headers
                   }
@@ -165,7 +179,23 @@ export class AppComponent
                           () => { let debugVar3 = '';
                                   debugVar3 = '333';
                                 }
-                        ); */
+                        );
+    */
+
+    this.http.post(this.requestURL,
+                   this.postRequestPayload,
+                   {'headers': headers}
+                  )
+             .subscribe( result => { let debugVar1 = '';
+                                     debugVar1 = '111';
+                                   },
+                         error => { let debugVar2 = '';
+                                    debugVar2 = '222';
+                                  },
+                         () => { let debugVar3 = '';
+                                 debugVar3 = '333';
+                               }
+                        );
 
 
   }
