@@ -22,6 +22,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/shareReplay';
 import * as _ from 'lodash';
 import { HttpParams } from '@angular/common/http';
 
@@ -186,6 +187,7 @@ export class AppComponent
                    this.postRequestPayload,
                    {'headers': headers}
                   )
+             .shareReplay()
              .subscribe( result => { let debugVar1 = '';
                                      debugVar1 = '111';
                                    },
@@ -195,7 +197,7 @@ export class AppComponent
                          () => { let debugVar3 = '';
                                  debugVar3 = '333';
                                }
-                        );
+                        ) ;
 
 
   }
