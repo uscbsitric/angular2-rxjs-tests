@@ -37,8 +37,15 @@ interface MockServerData
 
 interface PutRequestPayload
 {
-  courseListIcon: string;
-  description: string;
+  dataFromAngularCourseListIcon: string;
+  dataFromAngularDescription: string;
+  dataFromAngularIconUrl: string;
+  dataFromAngularLongDescription: string;
+  dataFromAngularUrl: string;
+}
+
+interface PatchRequestPayload
+{
   iconUrl: string;
   longDescription: string;
   url: string;
@@ -58,6 +65,8 @@ export class AppComponent
   requestURL2 = 'http://mockserver.local/mockserver2.php';
 
   putRequestPayload: PutRequestPayload;
+  patchRequestPayload: PatchRequestPayload;
+  
 
   constructor(private http:HttpClient)
   {
@@ -68,15 +77,22 @@ export class AppComponent
   {
     const key = 'someKey';
     const params = new HttpParams().set('orderBy', key)
-                                       .set('limitToFirst', '11111111111');
+                                   .set('limitToFirst', '11111111111');
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    this.putRequestPayload = {'courseListIcon': '.../main-page-logo-small-hat.png',
-                              'description': 'Angular Tutorial For Beginners TEST',
-                              'iconUrl': '.../angular2-for-beginners.jpg',
-                              'longDescription': '...A very Long Description Here...',
-                              'url': 'new-value-for-url'
+    this.putRequestPayload = {'dataFromAngularCourseListIcon': '.../main-page-logo-small-hat.png',
+                              'dataFromAngularDescription': 'Angular Tutorial For Beginners TEST',
+                              'dataFromAngularIconUrl': '.../angular2-for-beginners.jpg',
+                              'dataFromAngularLongDescription': '...A very Long Description Here...',
+                              'dataFromAngularUrl': 'new-value-for-url'
                              };
+
+    this.patchRequestPayload = {'iconUrl': 'value1',
+                                'longDescription': 'value2',
+                                'url': 'value3',
+                               };
+
+
 
 /*     // WORKING HTTP GET Code
     this.courses$ = this.http
@@ -112,11 +128,14 @@ export class AppComponent
                                                 }
                                        ); */
 
-    /* THIS IS A WORKING PUT REQUEST WITH ERROR CATCHER
-    this.http.put(this.requestURL2,
+
+
+
+
+    // THIS IS A WORKING PUT REQUEST WITH ERROR CATCHER
+    this.http.put(this.requestURL,
                   this.putRequestPayload,
-                  {'headers': headers,
-                    'params': params
+                  {'headers': headers
                   }
                  )
              .subscribe( result => { let debugVar1 = '';
@@ -129,6 +148,25 @@ export class AppComponent
                                  debugVar3 = '333';
                                }
                        );
-    */
+
+
+
+/*     this.http.put(this.requestURL,
+                  this.patchRequestPayload,
+                  {'headers': headers
+                  }
+                 )
+              .subscribe( result => { let debugVar1 = '';
+                                      debugVar1 = '111';
+                                    },
+                          error => { let debugVar2 = '';
+                                     debugVar2 = '222';
+                                   },
+                          () => { let debugVar3 = '';
+                                  debugVar3 = '333';
+                                }
+                        ); */
+
+
   }
 }
