@@ -23,6 +23,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/shareReplay';
+import 'rxjs/add/operator/share';
 import * as _ from 'lodash';
 import { HttpParams } from '@angular/common/http';
 
@@ -101,9 +102,9 @@ export class AppComponent
                                 'dataFromAngularUrl': 'value3',
                                };
 
-    this.postRequestPayload = {'dataFromAngularIconUrl': 'test data 1';
-                               'dataFromAngularLongDescription': 'test data 2';
-                               'dataFromAngularUrl': 'test data 3';
+    this.postRequestPayload = {'dataFromAngularIconUrl': 'test data 1',
+                               'dataFromAngularLongDescription': 'test data 2',
+                               'dataFromAngularUrl': 'test data 3'
                               };
 
 
@@ -166,11 +167,10 @@ export class AppComponent
 
 
     /*
-    this.http.put(this.requestURL,
-                  this.patchRequestPayload,
-                  {'headers': headers
-                  }
-                 )
+    this.http.patch(this.requestURL,
+                    this.patchRequestPayload,
+                    {'headers': headers}
+                   )
               .subscribe( result => { let debugVar1 = '';
                                       debugVar1 = '111';
                                     },
@@ -183,11 +183,13 @@ export class AppComponent
                         );
     */
 
+
+    /* WORKING POST REQUEST
     this.http.post(this.requestURL,
                    this.postRequestPayload,
                    {'headers': headers}
                   )
-             .shareReplay()
+             .share()
              .subscribe( result => { let debugVar1 = '';
                                      debugVar1 = '111';
                                    },
@@ -197,7 +199,7 @@ export class AppComponent
                          () => { let debugVar3 = '';
                                  debugVar3 = '333';
                                }
-                        ) ;
+                        ) ;*/
 
 
   }
